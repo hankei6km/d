@@ -12,7 +12,7 @@
 . <(curl -L https://github.com/hankei6km/d/raw/main/s)
 ```
 
-### `s` - 主に CodeSandbox 用
+### `s` - CodeSandbox 用
 
 CodeSandbox の IDE や VSCode でサンドボックスやリポジトリ(ブランチ)を開いた後にターミナルから実行。一旦ターミナルを閉じて開くと設定された環境となる。
 
