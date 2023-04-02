@@ -11,6 +11,7 @@ fi
 export EDITOR=vim
 set -o vi
 bind -m vi-insert '"\C-l":clear-screen'
+source <(https://github.com/hankei6km/helper-gh-copilot-cli/raw/main/helper-gh-copilot-cli.sh)
 EOF
 fi
 
@@ -148,3 +149,19 @@ nix-env -iA nixpkgs.tig
 nix-env -iA nixpkgs.shellcheck
 # 新規インストールでも Reload なしで nix-ide から認識される.
 nix-env -iA nixpkgs.nixpkgs-fmt
+
+# feature 経由でインストール
+function install_feature() {
+    local image_full_name image_digest image_name
+    image_full_name="${1}"
+    image_digest="$(oras manifest fetch --output - "${image_full_name}" | jq -r ".layers[0].digest")"
+    image_name=${image_full_name%%:*}
+
+    bash -c "$(oras blob fetch -o - "${image_name}@${image_digest}" | tar -xOf - "./install.sh")" --
+}
+
+nix-env -iA nixpkgs.oras
+
+# VERSION="latest" install_feature "ghcr.io/hankei6km/test-feature-starter/github-copilot-cli:1"
+
+nix-env -e oras
