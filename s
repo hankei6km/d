@@ -143,6 +143,7 @@ fi
 nix-env -iA nixpkgs.fzf
 nix-env -iA nixpkgs.tmux
 nix-env -iA nixpkgs.tig
+nix-env -iA nixpkgs.actionlint
 
 # csb.nix でインストールしても VSCode 拡張拡張機能から利用できない.
 # 新規インストールの場合、Widow を reload するまで Bash IDE 拡張機能から認識されない.
