@@ -139,6 +139,8 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
  && sudo apt install gh -y 
 
 ## code cli
-curl -sL 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64' | tar -zxf -
-test -d ~/.local/bin || mkdir -p ~/.local/bin
-mv code ~/.local/bin/code
+if test ! -x ~/.local/bin/code ; then
+  curl -sL 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64' | tar -zxf -
+  test -d ~/.local/bin || mkdir -p ~/.local/bin
+  mv code ~/.local/bin/code
+fi
